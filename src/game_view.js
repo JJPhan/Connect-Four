@@ -1,61 +1,52 @@
-// Stores a Game instance.
-// Stores a canvas context to draw the game into.
-// Installs key listeners to move the ship and fire bullets.
-// Installs a timer to call Game.prototype.step.
-
 
 const canvas = document.getElementById('game-canvas');
 const board = canvas.getContext('2d')
 let c = canvas.getContext('2d')
 
-canvas.height = 500
-canvas.width = 500
+canvas.height = 650
+canvas.width = 750
 
-// canvas.addEventListener("mousedown", dropChip, false)
-// function dropChip(event) {}
     
 canvas.addEventListener("mousedown", dropChip, false)
 
 function dropChip() {
 
-    let y = 35;
-    let dy = 5;
+    let y = 50;
+    let dy = 20;
     let radius = 30; 
 
-    
     function animate() {
         requestAnimationFrame(animate);
-        c.clearRect(0, 0, 500, 500);
-
-
+        c.clearRect(0, 0, 750, 650);
+        
         c.beginPath();
-        c.arc(200, y, radius, 0, Math.PI * 2, false)
+        c.arc(75, y, radius, 0, Math.PI * 2, false)
         c.fillStyle = 'green';
         c.fill();
         c.lineWidth = 5;
         c.strokeStyle = 'black';
         c.stroke();
         
-        // while (y + radius < 500) {
-        //     y += dy
-        // }
-        // while (y + radius < 500 )
-        if (y + radius < 500 ) {
-             y += dy } 
-        
-        // y += dy
+            if (y + radius < 600 ) {
+                y += dy } 
 
-    }
-    
+
+        for (let yVal = 50; yVal < 650; yVal += 100) {
+            for (let xVal = 75; xVal < 750; xVal += 100) {
+                c.beginPath();
+                c.arc(xVal, yVal, 30, Math.PI * 2, false)
+                c.fillStyle = 'transparent';
+                c.fill();
+                c.lineWidth = 5;
+                c.strokeStyle = 'black';
+                c.stroke();
+            }
+        }
+
+    } 
     animate()
-
 }
 
-dropChip();
-
-// this.drop = function() {
-//     if (x + 30)
-// }
 
 
 
