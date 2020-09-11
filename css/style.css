@@ -1,11 +1,43 @@
 #game-canvas {
     border: 2px solid green;
-    background: lightslategrey;
+    background: transparent;
+    /* background: lightslategray; */
     display: flex;
-    margin: 0 20% 0 20% 0;
+    /* margin: 0 20% 0 20% 0; */
+    position: absolute;
+    z-index: 2;
 }
 
-/* body {
-    margin: 0px;
-} */
+
+
+#game-chip {
+    border: 2px solid green;
+    /* background: lightslategrey; */
+    display: flex;
+    margin: 0 20% 0 20% 0;
+    position: absolute;
+    /* z-index:  */
+}
+
+#board-columns {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-direction: row;
+    height: 650px;
+    width: 750px;
+    z-index: 3;
+    background-color: transparent;
+}
+
+#board-columns > * {
+    width: 100px;
+    height: 100%;
+}
+
+
+#board-columns > *:hover {
+    background-color: rgb(108, 129, 108);
+    opacity: 0.2;
+}
 
