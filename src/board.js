@@ -1,22 +1,21 @@
-const CurrentPlayer = require( './human_player' )
+// const CurrentPlayer = require( './human_player' )
 
 class Board {
     constructor() { 
         this.board = new Array(6);
         for (let i = 0; i < this.board.length; i++) {
-            this.board[i] = new Array(7).fill("empty")
+          this.board[i] = new Array(7).fill("empty");
 
-            // this.col1 = document.getElementById("column1")
-            // this.col2 = document.getElementById("column2")
-            // this.col3 = document.getElementById("column3")
-            // this.col4 = document.getElementById("column4")
-            // this.col5 = document.getElementById("column5")
-            // this.col6 = document.getElementById("column6")
-            // this.col7 = document.getElementById("column7")
+          // this.col0 = document.getElementById("column0")
+          // this.col1 = document.getElementById("column1")
+          // this.col2 = document.getElementById("column2")
+          // this.col3 = document.getElementById("column3")
+          // this.col4 = document.getElementById("column4")
+          // this.col5 = document.getElementById("column5")
+          // this.col6 = document.getElementById("column6")
         }
-        console.log(new CurrentPlayer())
-        this.CurrentPlayer = new CurrentPlayer();
-        this.ComputerPlayer = new ComputerPlayer();
+        // this.CurrentPlayer = new CurrentPlayer();
+        // this.ComputerPlayer = new ComputerPlayer();
     }
     
 
@@ -25,7 +24,7 @@ class Board {
         let matrix = this.board;
         let matColumn
         // get an array of every spot in the column 
-        for (let i = 0; i > 0; i--) {
+        for (let i = 5; i > 0; i--) {
              matColumn = 
                 [ matrix[i][column], 
                 matrix[i][column], 
@@ -33,33 +32,32 @@ class Board {
                 matrix[i][column],
                 matrix[i][column], 
                 matrix[i][column], 
-                matrix[i][column] ]      
+                matrix[i][column] ]    
+
         }
         // checks to see if there is not any empty values in the column
-        matColumn.some((ele) => ele === "empty")
+        return (matColumn.some((ele) => ele === "empty"))
+        
     }
 
-        // const notEmpty = (!matColumn.some((ele) =>  ele === "empty"))
-        // if (notEmpty) {
-        //     alert("Invalid Column; Column Maxed")
-        // } else if (matrix[i][column !== "empty"]) {
-        //     matrix[i][column] = currentPlayer.token
-        // }
 
     
     selectColumn(column) {
         let matrix = this.board; 
         if (this.validColumn(column)) {
-            for (let i = 6; i < 0; i--) {
+            for (let i = 5; i >= 0; i--) {
                 if (matrix[i][column] === "empty") {
-                    matrix[i][column] === CurrentPlayer.token }
+                    matrix[i][column] = "x" 
+                    return }
                     // how should i get the canvas to change color to the players token?
                     // give a onChange to of the tiles on the matrix? 
                     // onChange on tile of matrix => creates a new object dropping to location
-            }   
-
+                    console.log("PASSED")
+                }   
         } else {
-            alert("Invalid Column; Column Maxed")
+            // alert("Invalid Column; Column Maxed")
+            c
+            return "INVALID"
         }
     }
 
@@ -74,6 +72,7 @@ class Board {
     
     
     horizontalWin() {
+        let matrix = this.board
         for (let row = 0; row < matrix.length; row++) {
             for (let column = 0; column < 3; column++) {
                 if (matrix[row][column] === matrix[row][column + 1] 
@@ -86,6 +85,7 @@ class Board {
         }
         
     verticalWin() {
+        let matrix = this.board;
         for (let column = 0; column < 7; column++) {
             for (let row = 0; row < 2; row++) {
                 if (matrix[row][column] === matrix[row + 1][column]
@@ -98,6 +98,7 @@ class Board {
         }
         
     leftDiagonalWin() {
+        let matrix = this.board;
         for (let row = 0; row < 2; row++) {
             for (let column = 0; column < 3; column++) {
                 if (matrix[row][column] === matrix[row + 1][column + 1]
@@ -111,6 +112,7 @@ class Board {
         }
             
     rightDiagonalWin() {
+        let matrix = this.board;
         for (let row = 0; row < 2; row++) {
             for (let column = 7; column > 4; column--) {
                 if (matrix[row][column] === matrix[row - 1][column - 1]
@@ -152,6 +154,38 @@ class Board {
 }
 
 let b = new Board();
-b.validColumn();
+console.log(b)
+
+let testValidB =[ b.validColumn(0), 
+    b.validColumn(1), 
+    b.validColumn(2), 
+    b.validColumn(3), 
+    b.validColumn(4), 
+    b.validColumn(5), 
+    b.validColumn(6) ]
+console.log(testValidB)
+
+
+// let testSelectC = [
+//     b.selectColumn(0),
+//     b.selectColumn(1),
+//     b.selectColumn(2),
+//     b.selectColumn(3),
+//     b.selectColumn(4),
+//     b.selectColumn(5),
+//     b.selectColumn(6),
+// ]
+// console.log(b)
+
+let testVertWin = [
+    b.selectColumn(0),
+    b.selectColumn(0),
+    b.selectColumn(0),
+    b.selectColumn(0)
+]
+
+console.log(b)
+console.log(b.horizontalWin())
+
 
 module.export = Board
