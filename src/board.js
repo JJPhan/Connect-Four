@@ -1,11 +1,11 @@
-const Player = require( './player' )
+const Player = require('./player' )
+const Computer = require('./computer')
 
 class Board {
     constructor() { 
         this.board = new Array(6);
         for (let i = 0; i < this.board.length; i++) {
           this.board[i] = new Array(7).fill("empty");
-            
           // this.col0 = document.getElementById("column0")
           // this.col1 = document.getElementById("column1")
           // this.col2 = document.getElementById("column2")
@@ -15,6 +15,7 @@ class Board {
           // this.col6 = document.getElementById("column6")
         }
         this.Player = new Player();
+        this.Computer = new Computer();
         // this.ComputerPlayer = new ComputerPlayer();
     }
     
@@ -47,7 +48,8 @@ class Board {
         if (this.validColumn(column)) {
             for (let i = 5; i >= 0; i--) {
                 if (matrix[i][column] === "empty") {
-                    matrix[i][column] = this.Player.token
+                    // matrix[i][column] = this.Player.token
+                    matrix[i][column] = token
                     return }
                     // how should i get the canvas to change color to the players token?
                     // give a onChange to of the tiles on the matrix? 
@@ -55,7 +57,7 @@ class Board {
                 }   
         } else {
             // alert("Invalid Column; Column Maxed")
-            c
+            console.log("invalid")
             return "INVALID"
         }
     }
@@ -97,9 +99,8 @@ class Board {
                     && matrix[row][column] === matrix[row + 1][column]
                     && matrix[row][column] === matrix[row + 2][column]
                     && matrix[row][column] === matrix[row + 3][column]) {
-                console.log(row, column)
-                return true } else {
-                }
+                // console.log(row, column)
+                return true }
             }
         }
         return false
@@ -136,6 +137,7 @@ class Board {
     }
                 
     wonGame() {
+        console.log("game won?")
         if ( this.horizontalWin() 
         || this.verticalWin()
         || this.leftDiagonalWin()
@@ -151,6 +153,7 @@ class Board {
     // the game is over
     
     gameOver() {
+        console.log("game over - no spaces left")
         let matrix = this.board
         
         matrix.forEach(row => {
@@ -159,16 +162,17 @@ class Board {
         })
         return true
     }
-    
 
 }
 
+// module.exports = Board
+export default Board
 
 /////////// test //////////////
 
-console.log("test board")
-let b = new Board();
-console.log(b)
+// console.log("test board")
+// let b = new Board();
+// console.log(b)
 
 // let testValidB =[ b.validColumn(0), 
 //     b.validColumn(1), 
@@ -230,6 +234,8 @@ console.log(b)
 //         b.selectColumn(0, "x"),
 //         b.selectColumn(0, "y") ]
 // console.log(b)
+// console.log(b.leftDiagonalWin());
+
 
 
 // let testRightWin = [
@@ -247,22 +253,21 @@ console.log(b)
 // console.log(b.rightDiagonalWin());
 
 
-let testRightWin = [
-    b.selectColumn(3, "y"),
-    b.selectColumn(4, "x"),
-    b.selectColumn(4, "y"),
-    b.selectColumn(5, "x"),
-    b.selectColumn(5, "x"),
-    b.selectColumn(5, "y"),
-    b.selectColumn(6, "x"),
-    b.selectColumn(6, "y"),
-    b.selectColumn(6, "x"),
-    b.selectColumn(6, "y") ]
-console.log(b)
-console.log(b.rightDiagonalWin());
+// let testRightWin = [
+//     b.selectColumn(3, "y"),
+//     b.selectColumn(4, "x"),
+//     b.selectColumn(4, "y"),
+//     b.selectColumn(5, "x"),
+//     b.selectColumn(5, "x"),
+//     b.selectColumn(5, "y"),
+//     b.selectColumn(6, "x"),
+//     b.selectColumn(6, "y"),
+//     b.selectColumn(6, "x"),
+//     b.selectColumn(6, "y") ]
+// console.log(b)
+// console.log(b.rightDiagonalWin());
     
-console.log(b.wonGame());
+// console.log(b.wonGame());
 
 
-module.export = Board
 

@@ -1,3 +1,6 @@
+// import { validColumn, selectColumn } from './board.js'
+// const Board = require('./board')
+// import Board from './board'
 
 const canvas = document.getElementById('game-canvas');
 const c = canvas.getContext('2d')
@@ -26,6 +29,19 @@ board.width = 700
 
 columns.forEach((column, idx) => column.addEventListener("click", function(){dropChip(idx)}, false))
 
+// how will i get the players token inside...?
+// need a function that will
+    // on click 
+        // checks for a valid column
+        // select the column / marking the spot
+        // animate => drop the chip
+
+
+// megafunction(idx, this.Player.token) {
+
+// }
+
+
 function dropChip(idx) {
     let x = 50 + (idx * 100)
     let y = 50;
@@ -42,8 +58,6 @@ function dropChip(idx) {
             c.lineWidth = 5;
             c.strokeStyle = "black";
             c.stroke();
-            // c.fillStyle = "lightslategray";
-            // c.fillRect(0, 0, canvas.width, canvas.height);
           }
         }
 

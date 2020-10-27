@@ -1,9 +1,11 @@
 class Player {
     constructor() {
-        this.token = "Red";
+        this.token = "red";
     }
 }
 
 
 
-module.export = Player
+// module.exports = Player
+
+export default Player
